@@ -1,4 +1,4 @@
-# build-merged-binaries-upload-ci-action
+# build-merge-upload-binaries-ci-action
 This Github Action builds merged binaries of ESP projects and uploads them to the Github pages.
 
 # Usage
@@ -50,7 +50,7 @@ jobs:
           submodules: 'recursive'
 
       - name: Action for Building and Uploading Binaries
-        uses: XDanielPaul/build-merged-binaries-upload-ci-action@vX.Y.Z
+        uses: XDanielPaul/build-merge-upload-binaries-ci-action@v1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           idf_version: ${{ matrix.idf_ver }}

@@ -23,7 +23,7 @@ runs:
         curl \
           -H "Accept: application/vnd.github.v3.raw" \
           -o generateFiles.py \
-          -L https://api.github.com/repos/XDanielPaul/build-merged-binaries-upload-ci-action/contents/generateFiles.py
+          -L https://api.github.com/repos/XDanielPaul/build-merge-upload-binaries-ci-action/contents/generateFiles.py
 
     - name: Build examples
       shell: bash
