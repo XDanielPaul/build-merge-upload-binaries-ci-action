@@ -5,15 +5,16 @@ import os
 import rtoml
 
 # Environment variables
-github_repository = os.environ.get('GITHUB_REPOSITORY').split('/')
-tag_name = os.environ.get('TAG_NAME')
-idf_version = os.environ.get('IDF_VERSION')
+#github_repository = os.environ.get('GITHUB_REPOSITORY').split('/')
+#idf_version = os.environ.get('IDF_VERSION')
+idf_version = 'latest'
 
-github_owner = github_repository[0]
-github_repo = github_repository[1]
+#github_owner = github_repository[0]
+#github_repo = github_repository[1]
 
 # Root toml object
-toml_obj = {'esp_toml_version': 1.0, 'firmware_images_url': f'https://{github_owner}.github.io/{github_repo}', 'supported_apps': []}
+#toml_obj = {'esp_toml_version': 1.0, 'firmware_images_url': f'https://{github_owner}.github.io/{github_repo}', 'supported_apps': []}
+toml_obj = {'esp_toml_version': 1.0, 'supported_apps' : []}
 
 class App:
     
@@ -117,8 +118,24 @@ def create_config_toml(apps):
 
             with open('binaries/config.toml', 'w') as toml_file:
                 rtoml.dump(toml_obj, toml_file)
+            
+            with open('binaries/config.toml', 'r') as toml_file:
+                fixed = replace_image_string(toml_file.read())
 
-with open(sys.argv[1], 'r') as file:
+            with open('binaries/config.toml', 'w') as toml_file:
+                toml_file.write(fixed)
+
+def replace_image_string(text):
+    # Define the regular expression pattern to find "image.<string>"
+    pattern = r'"(image\.\w+)"'
+    
+    # Use re.sub() to replace the matched pattern with image.<string>
+    result = re.sub(pattern, r'\1', text)
+    
+    return result
+
+#with open(sys.argv[1], 'r') as file:
+with open('out.json', 'r') as file:
     apps = squash_json(file.read())
-    merge_binaries(apps)
+    #merge_binaries(apps)
     create_config_toml(apps)
