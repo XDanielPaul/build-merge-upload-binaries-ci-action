@@ -12,7 +12,7 @@ github_owner = github_repository[0]
 github_repo = github_repository[1]
 
 # Root toml object
-toml_obj = {'esp_toml_version': 1.0, 'firmware_images_url': f'https://{github_owner}.github.io/{github_repo}', 'supported_apps': []}
+toml_obj = {'esp_toml_version': 1.0, 'firmware_images_url': f'https://{github_owner}.github.io/{github_repo}/', 'supported_apps': []}
 
 class App:
     
