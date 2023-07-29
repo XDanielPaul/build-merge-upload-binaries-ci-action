@@ -33,7 +33,7 @@ runs:
         . ${IDF_PATH}/export.sh
         pip install rtoml ruamel.yaml --upgrade
         echo "Building examples..."
-        idf-build-apps build --collect-app-info out.json --ignore-warning-str "DeprecationWarning: pkg_resources is deprecated as an API" 
+        idf-build-apps build --collect-app-info out.json --build-dir "build_@w" 
         echo "Merging binaries and creating config.toml..."
         python generateFiles.py out.json
         echo "Uploading binaries..."

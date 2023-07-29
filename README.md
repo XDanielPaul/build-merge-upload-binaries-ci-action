@@ -17,11 +17,8 @@ recursive = true # Search for buildable projects recursively on the paths
 
 # Configuration file for the build process 
 config = "sdkconfig.defaults"
-
-# Build related options
-build_dir = "build_@w" # Build directory
 ```
-**Do not overwrite** `--collect-app-info` **option!**
+**Do not overwrite** `collect-app-info` **and** `build-dir` **options!**
 
 ## Inputs
 ### `github_token`
@@ -50,7 +47,7 @@ jobs:
           submodules: 'recursive'
 
       - name: Action for Building and Uploading Binaries
-        uses: XDanielPaul/build-merge-upload-binaries-ci-action@v1.0
+        uses: XDanielPaul/build-merge-upload-binaries-ci-action@v1.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           idf_version: ${{ matrix.idf_ver }}
