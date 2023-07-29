@@ -5,16 +5,14 @@ import os
 import rtoml
 
 # Environment variables
-#github_repository = os.environ.get('GITHUB_REPOSITORY').split('/')
-#idf_version = os.environ.get('IDF_VERSION')
-idf_version = 'latest'
+github_repository = os.environ.get('GITHUB_REPOSITORY').split('/')
+idf_version = os.environ.get('IDF_VERSION')
 
-#github_owner = github_repository[0]
-#github_repo = github_repository[1]
+github_owner = github_repository[0]
+github_repo = github_repository[1]
 
 # Root toml object
-#toml_obj = {'esp_toml_version': 1.0, 'firmware_images_url': f'https://{github_owner}.github.io/{github_repo}', 'supported_apps': []}
-toml_obj = {'esp_toml_version': 1.0, 'supported_apps' : []}
+toml_obj = {'esp_toml_version': 1.0, 'firmware_images_url': f'https://{github_owner}.github.io/{github_repo}', 'supported_apps': []}
 
 class App:
     
@@ -134,8 +132,7 @@ def replace_image_string(text):
     
     return result
 
-#with open(sys.argv[1], 'r') as file:
-with open('out.json', 'r') as file:
+with open(sys.argv[1], 'r') as file:
     apps = squash_json(file.read())
-    #merge_binaries(apps)
+    merge_binaries(apps)
     create_config_toml(apps)
